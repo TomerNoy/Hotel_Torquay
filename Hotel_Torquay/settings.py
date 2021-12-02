@@ -32,8 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'visitors',
     'staff',
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -115,3 +117,6 @@ try:
     from .local_settings import *
 except ImportError:
     raise Exception('A local_settings file MUST exist in order to use this project')
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
