@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-# from .accounts import Profile FIX once Profile Class is defined inside accounts/models
+from accounts.models import Profile
+# FIX once Profile Class is defined inside accounts/models
 # from decimal import Decimal
 
 # Create your models here.
@@ -16,7 +17,7 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
-    # clientId = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    clientId = models.ForeignKey(Profile, on_delete=models.CASCADE)
     roomId = models.ForeignKey(Room, on_delete=models.CASCADE)
     enterDate = models.DateTimeField(null=True)
     leaveDate = models.DateTimeField(null=True)
