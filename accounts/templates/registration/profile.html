@@ -1,0 +1,8 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    <div class="card p-3 bg-light" style="width: max-content">
+        <h1>{{ user.username|capfirst }} Profile</h1>
+        <h6> {{ user.email }} </h6>
+{#        {{ user.is_superuser }}#}
+    </div>
+{% endblock %}

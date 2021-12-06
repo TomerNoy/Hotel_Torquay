@@ -1,0 +1,26 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    <h4> Guest: </h4>
+    <div class="container">
+        <p>username: {{ booking.guest.user.username }} </p>
+        <p>full name: {{ booking.guest.user.first_name }} {{ booking.guest.user.last_name }}</p>
+        <p>email: {{ booking.guest.user.email }}</p>
+        <p>address: {{ booking.guest.address }}</p>
+        <p>phone number: {{ booking.guest.phone_number }}</p>
+    </div>
+    <hr>
+    <div class="container">
+        <h4> Room: </h4>
+        <p>room id: {{ booking.room.id }}</p>
+        <p>room type: {{ booking.room.room_type }}</p>
+        <p>phone number: {{ booking.room.price }}</p>
+    </div>
+    <hr>
+    <h4> Reserved Dates: </h4>
+    <div class="container">
+        <p>{{ booking.check_in }} - {{ booking.check_out }}</p>
+    </div>
+
+    <button onclick="location.href='{% url 'bookings' %}'" class="btn btn-secondary my-3"> go back</button>
+
+{% endblock %}

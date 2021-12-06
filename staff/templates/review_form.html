@@ -1,0 +1,14 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    <h5 class="pt-5 pb-3">Leave us review:</h5>
+
+    {% load django_bootstrap5 %}
+    <form class="px-5" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <div class="container mt-3">
+            <input type="submit" value="submit" class="btn btn-secondary">
+        </div>
+    </form>
+{% endblock %}

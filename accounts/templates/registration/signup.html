@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    <h1 class="my-3">SignUp</h1>
+    {% load django_bootstrap5 %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_form profile_form %}
+
+{#       {% for form in forms %}#}
+{#            {% bootstrap_form form %}#}
+{#        {% endfor %}#}
+        <div class="container mt-3">
+            <input type="submit" value="submit" class="btn btn-secondary">
+        </div>
+    </form>
+{% endblock %}
