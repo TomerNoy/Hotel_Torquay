@@ -1,0 +1,26 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    {% load django_bootstrap5 %}
+    <h3>{{ username }}'s previous visits</h3>
+
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">check in</th>
+            <th scope="col">check out</th>
+            <th scope="col">room ID</th>
+        </tr>
+        </thead>
+        {% for visit in visits %}
+            <tbody>
+            <tr>
+                <td>{{ visit.check_in }}</td>
+                <td>{{ visit.check_out }}</td>
+                <td>{{ visit.room_id }}</td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+{% endblock %}

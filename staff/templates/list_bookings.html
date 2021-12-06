@@ -1,0 +1,40 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    {% load django_bootstrap5 %}
+    <form method="get">
+        {% bootstrap_form filter.form %}
+        {#                {{ filter.form }}#}
+        <input class="btn btn-secondary" type="submit" value="Search"/>
+    </form>
+
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Link</th>
+            <th scope="col">Guest</th>
+            <th scope="col">Room</th>
+            <th scope="col">Check_in</th>
+            <th scope="col">Check_out</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        {% for obj in filter.qs %}
+            <tbody>
+            <tr>
+                <td><a class="btn btn-secondary " href="{% url 'booking' obj.pk %}">{{ forloop.counter }}</a></td>
+                <td>{{ obj.guest }}</td>
+                <td>{{ obj.room }}</td>
+                <td>{{ obj.check_in }}</td>
+                <td>{{ obj.check_out }}</td>
+                <td><a href="{% url 'edit_booking' obj.pk %}"> <i style="color: gray" class="fas fa-edit fa-lg"></i>
+                </a></td>
+                <td><a href="{% url 'delete_booking' obj.pk %}"> <i style="color: red" class="fas fa-trash-alt fa-lg"></i>
+                </a></td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+{% endblock %}

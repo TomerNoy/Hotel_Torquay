@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'visitors',
     'staff',
     "django_bootstrap5",
+    'django_filters',
 ]
 
 MIDDLEWARE = [

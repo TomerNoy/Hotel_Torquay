@@ -1,43 +1,123 @@
 {% extends "partials/base.html" %}
 {% block content %}
-    <h6 class="p-5">
-        All our guestrooms are elegantly furnished with handmade furniture include luxury en-suite facilities with
-        complimentary amenities pack, flat screen LCD TV, tea/coffee making facilities, fan, hairdryer and the finest
-        pure white linen and towels.
-    </h6>
-    <div class="d-md-flex flex-md-row mb-3 ">
-        <div class="card m-3">
-            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                 class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Our king size four poster provides views over landscaped gardens. It has a seating
-                    area, ample storage, digital safe and mini fridge.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+    <img src="https://cdn.i-scmp.com/sites/default/files/styles/landscape_250_99/public/d8/images/methode/2019/07/12/bbefa18e-a14c-11e9-9a3c-98259c87fba2_972x_173133.jpg?itok\=ugYC1PUg\&v\=1562923902"
+         class="img-fluid" alt="...">
 
-        <div class="card m-3">
-            <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                 class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Our king size sleigh bedded also provides views over landscaped gardens. It has
-                    ample storage, a seating area, digital safe and mini fridge.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+    <h5 class="py-2 pt-5">About us:</h5>
+
+    <p class="px-5 pb-5">
+        The Torquay Towers hotel was born in 1949, brought to us in the pink and frilly shape of Sharrow Bay,
+        overlooking Ullswater in the Lake District. Presided over by a splendid couple, Francis Coulson and his partner
+        Brian Sack, it came complete with a gargantuan afternoon tea, and Sack’s famous Icky Sticky Toffee Pudding and
+        Coulson’s bedtime poems on the pillow. People adored it. There had been leisure hotels in Britain before, of
+        course, but this was the first where you could be assured of being personally pampered in beautiful rural
+        surroundings, with a committed owner at the helm offering a warm welcome, decent food, peace and quiet.
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'review_form' %}" class="btn btn-secondary ms-5 mb-3">Leave a review</a>
+    {% endif %}
+
+    <div class="d-xl-flex mb-3 ">
 
         <div class="card m-3">
             <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                  class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Single</h5>
                 <p class="card-text">As our smallest budget rooms, the Compact bedrooms are suited for single occupancy
                     or short-stay double occupancy as they have limited space and storage.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <hr>
+                <h5 class="card-title">Vacancies</h5>
+                {% if context.single.items %}
+
+                    {% for k, v in context.single.items %}
+                        {% if forloop.first %}
+                            <h6 class="card-text mb-3">Room price at {{ v.0.price }}$</h6>
+                        {% endif %}
+                        <div class="row">
+                            <p class="col">  {{ k }}:</p>
+                            <p class="col">{{ v | length }} rooms available </p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>no rooms available </p>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="card m-3">
+            <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                 class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Double</h5>
+                <p class="card-text">Our king size sleigh bedded also provides views over landscaped gardens. It has
+                    ample storage, a seating area, digital safe and mini fridge.</p>
+                <hr>
+                <h5 class="card-title">Vacancies</h5>
+                {% if context.double.items %}
+                    {% for k, v in context.double.items %}
+                        {% if forloop.first %}
+                            <h6 class="card-text mb-3">Room price at {{ v.0.price }}$</h6>
+                        {% endif %}
+                        <div class="row">
+                            <p class="col">  {{ k }}:</p>
+                            <p class="col">{{ v | length }} rooms available </p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>no rooms available </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card m-3">
+            <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                 class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Suite</h5>
+                <p class="card-text">Our king size four poster provides views over landscaped gardens. It has a seating
+                    area, ample storage, digital safe and mini fridge.</p>
+                <hr>
+                <h5 class="card-title">Vacancies</h5>
+                {% if context.suite.items %}
+                    {% for k, v in context.suite.items %}
+                        {% if forloop.first %}
+                            <h6 class="card-text mb-3">Room price at {{ v.0.price }}$</h6>
+                        {% endif %}
+                        <div class="row">
+                            <p class="col">  {{ k }}:</p>
+                            <p class="col">{{ v | length }} rooms available </p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>no rooms available </p>
+                {% endif %}
             </div>
         </div>
     </div>
+
+    <a href="{% url 'usr_booking' 1 %}" class="btn btn-secondary ms-5">Book now</a>
+
+    <h6 class="p-5">
+        All our guestrooms are elegantly furnished with handmade furniture include luxury en-suite facilities with
+        complimentary amenities pack, flat screen LCD TV, tea/coffee making facilities, fan, hairdryer and the finest
+        pure white linen and towels.
+    </h6>
+
+    <h5 class="py-2">Our Location:</h5>
+    <p class="px-5">Titchwell Manor, Titchwell, Near Brancaster, Norfolk PE31 8BB</p>
+    <h5 class="pt-5 pb-3">Ask us anything:</h5>
+
+    {% load django_bootstrap5 %}
+    <form class="px-5" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <div class="container mt-3">
+            <input type="submit" value="submit" class="btn btn-secondary">
+        </div>
+    </form>
 
 {% endblock %}

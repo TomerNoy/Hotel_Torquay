@@ -1,0 +1,29 @@
+{% extends "partials/base.html" %}
+{% block content %}
+    {% load django_bootstrap5 %}
+    <h1>Reviews</h1>
+
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">guest</th>
+            <th scope="col">date</th>
+            <th scope="col">Content</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        {% for review in reviews %}
+
+            <tbody>
+            <tr>
+                <td>{{ review.guest.user }}</td>
+                <td>{{ review.date }}</td>
+                <td>{{ review.content }}</td>
+                <td><a class="btn btn-danger" href="{% url 'delete_review' review.pk %}"> X</a></td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+{% endblock %}
